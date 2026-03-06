@@ -1,1 +1,1 @@
-Official Site Repo of SOBP BrainHack - 2025 Website
+Official Site Repo of SOBP BrainHack - 2026 Website
