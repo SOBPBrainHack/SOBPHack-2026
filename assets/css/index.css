@@ -1,5 +1,7 @@
-html {
-	scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
 }
 
 body {
@@ -161,7 +163,7 @@ body {
   
    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 800px) {
-	.topnav.responsive {position: relative;}
+	.topnav.responsive {position: fixed;}
 	.topnav.responsive a.visible-phone {
 	  position: absolute;
 	  right: 0;
