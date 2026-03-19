@@ -20,6 +20,10 @@
 	<link rel="stylesheet" href="assets/css/index.css" />
 
 
+	<!-- Leaflet CSS for hotel map -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
 	<!-- Full Calender -->
 	<link href='assets/js/fullcalendar/packages/core/main.css' rel='stylesheet' />
 	<link href='assets/js/fullcalendar/packages/list/main.css' rel='stylesheet' />
@@ -71,17 +75,14 @@
 	<div class="topnav" id="myTopnav">
 		<a href="#info">SOBP BrainHack - 2026</a>
 		<!-- <a href="https://brainhack.org/global2023/">Brainhack Global 2023</a> -->
-		<a href="https://www.eventbrite.com/e/sobp-brain-hack-2026-tickets-1984633557395?aff=oddtdtcreator"><b>Register</b></a> 
+		<a href="https://www.eventbrite.com/e/sobp-brain-hack-2026-tickets-1984633557395?aff=oddtdtcreator"><b>Register</b></a>
 		<a href="#schedule">Program & Schedule</a>
-		<!-- ><a href="#calendar">Schedule</a> -->
-		<!-- <a href="#workshop">Workshops</a> -->
-		<!-- <a href="#panel">Panel Discussion</a> -->
-		<a href="#projects">Projects</a>
 		<a href="#team">Our team</a>
-		<!-- <a href="#hotel_info">Nearby Hotels</a> -->
+		<a href="#projects">Projects</a>
+		<a href="#hotel_info">Nearby Hotels</a>
 		<a href="#sponsors">Sponsors</a>
 		<a href="#footer">Contact us</a>
-		<a href="https://sobpbrainhack.github.io/SOBPHack-2026/"><i class="icon fa-github"></i></a>
+		<a href="https://github.com/SOBPBrainHack/SOBPHack-2026"><i class="icon fa-github"></i></a>
 		<!-- <a href="https://twitter.com/brainhackto"><i class="icon fa-twitter"></i></a> -->
 		<a href="javascript:void(0);" class="visible-phone" onclick="myFunction()">&#9776;</a>
 	</div>
@@ -513,108 +514,150 @@
 			</div>
 		</div>
 	</section>
-				
+
+	<!-- Nearby Hotels -->
+	<section id="hotel_info" class="main">
+		<header>
+			<div class="container">
+				<h2>Nearby Hotels</h2>
+				<p>
+					Below are hotel options within walking distance of the venue
+					(<a href="https://www.studio1418.com/">Studio 1418</a>, 307 W 38th St, Midtown Manhattan),
+					most around ~$200/night or under.
+				</p>
+				<div class="row">
+					<div class="8u 12u(narrow)" style="margin: 0 auto; float: none;">
+						<ul style="text-align: left; font-size: 1.1em; line-height: 2.2em;">
+							<li><a href="https://www.hilton.com/en/hotels/nyctshx-hampton-manhattan-times-square-south/" target="_blank">Hampton Inn Manhattan/Times Square South</a></li>
+							<li><a href="https://www.americanainn.com/" target="_blank">Americana Inn</a></li>
+							<li><a href="https://www.hudsonyardshotel.com/" target="_blank">Hudson Yards Hotel</a></li>
+							<li><a href="https://www.themanhattanhotel.com/" target="_blank">The Manhattan at Times Square</a></li>
+							<li><a href="https://www.414hotel.com/" target="_blank">414 Hotel</a></li>
+							<li><a href="https://www.wyndhamhotels.com/tryp/new-york-new-york/tryp-by-wyndham-new-york-city-times-square-south/overview" target="_blank">TRYP by Wyndham New York City Times Square / Midtown</a></li>
+							<li><a href="https://www.thepodhotel.com/pod-39/" target="_blank">Pod 39</a></li>
+							<li><a href="https://www.thepodhotel.com/pod-times-square/" target="_blank">Pod Times Square Hotel</a></li>
+							<li><a href="https://www.paramounttimessquare.com/" target="_blank">Paramount Times Square</a></li>
+							<li><a href="https://www.mayfairnewyork.com/" target="_blank">The Mayfair Hotel Times Square</a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="hotel-map" style="height: 420px; width: 100%; max-width: 720px; margin: 1.5em auto; border-radius: 8px; z-index: 0;"></div>
+
+				<p style="font-style: italic;">
+					Cheaper options are also available in Jersey City, Harlem, and Queens (~30 min subway commute).
+				</p>
+			</div>
+		</header>
+
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+		<script>
+			(function () {
+				var map = L.map('hotel-map').setView([40.7555, -73.9900], 15);
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+					maxZoom: 18
+				}).addTo(map);
+
+				var venueIcon = L.icon({
+					iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+					shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+					iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+				});
+
+				var hotelIcon = L.icon({
+					iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+					shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+					iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+				});
+
+				L.marker([40.75520, -73.99180], { icon: venueIcon })
+					.addTo(map).bindPopup('<b>Studio 1418</b><br>Venue');
+
+				var hotels = [
+					[40.75350, -73.98950, 'Hampton Inn Manhattan/Times Square South'],
+					[40.75180, -73.98810, 'Americana Inn'],
+					[40.75380, -73.99700, 'Hudson Yards Hotel'],
+					[40.75710, -73.98900, 'The Manhattan at Times Square'],
+					[40.75870, -73.99220, '414 Hotel'],
+					[40.75300, -73.99000, 'TRYP by Wyndham Times Square / Midtown'],
+					[40.74820, -73.97830, 'Pod 39'],
+					[40.75750, -73.98930, 'Pod Times Square Hotel'],
+					[40.75830, -73.98710, 'Paramount Times Square'],
+					[40.75580, -73.98600, 'The Mayfair Hotel Times Square']
+				];
+
+				hotels.forEach(function (h) {
+					L.marker([h[0], h[1]], { icon: hotelIcon })
+						.addTo(map).bindPopup(h[2]);
+				});
+			})();
+		</script>
+	</section>
+
 	<!-- SPONSORS -->
 	<section id="sponsors" class="main">
 		<header>
 			<div class="container">
-				<h2>Thank you to our Supporters!</h2>
-				<p>
-				</p>
-			</div>
+				<h2>Sponsors</h2>
+				<p>Thank you to our generous sponsors for making SOBP BrainHack 2026 possible.</p>
 
-			<div class="row" align = "center">
-				<div class="11u">
-					<a href="https://sobp.org/2026-sobp-annual-meeting/"
-						target="_blank" class="image fit">
-						<img src="images/SOBPLogo_w_tagline-2021-1.png" alt="" />
+				<div class="sponsors-grid">
+					<a href="https://sobp.org/2026-sobp-annual-meeting/" target="_blank" class="sponsor-card primary">
+						<img src="images/SOBPLogo_w_tagline-2021-1.png" alt="SOBP" />
+					</a>
+					<a href="https://www.repronim.org/" target="_blank" class="sponsor-card primary">
+						<img src="images/ReproNim_Logo.png" alt="ReproNim" />
+					</a>
+				</div>
+
+				<hr class="section-divider">
+
+				<h3>Friends of SOBP Brainhack</h3>
+				<p>Organizations and communities that support the open neuroscience ecosystem.</p>
+
+				<div class="friends-grid">
+					<a href="https://enigma.ini.usc.edu/" target="_blank" class="friend-card">
+						<img src="images/enigma_300DPI_small.png" alt="ENIGMA" />
+					</a>
+					<a href="https://braincanada.ca/" target="_blank" class="friend-card">
+						<img src="images/BrainCan.png" alt="Brain Canada" />
+					</a>
+					<a href="http://braininstitute.ca/" target="_blank" class="friend-card">
+						<img src="images/OBI_logp.png" alt="Ontario Brain Institute" />
+					</a>
+					<a href="http://www.camh.ca/en/research/research_areas/krembil-centre-for-neuroinformatics" target="_blank" class="friend-card">
+						<img src="images/KCNI_with_brain.jpeg" alt="KCNI" />
+					</a>
+					<a href="https://www.sickkids.ca/en/research/research-programs/neurosciences-mental-health/" target="_blank" class="friend-card">
+						<img src="images/SickKids_research.png" alt="SickKids" />
+					</a>
+					<a href="https://compose.neurosynth.org/" target="_blank" class="friend-card">
+						<img src="images/NSC.png" alt="Neurosynth Compose" />
+					</a>
+					<a href="https://www.nitrc.org/" target="_blank" class="friend-card">
+						<img src="images/NITRCTriangle1.jpg" alt="NITRC" />
+					</a>
+					<a href="https://www.mcgill.ca/hbhl/" target="_blank" class="friend-card">
+						<img src="images/hbhl.png" alt="HBHL" />
+					</a>
+					<a href="https://brainlife.io/about/" target="_blank" class="friend-card">
+						<img src="images/thumbnail_brainlifelogo.png" alt="brainlife.io" />
+					</a>
+					<a href="https://conp.ca/" target="_blank" class="friend-card">
+						<img src="images/conp_logo.png" alt="CONP" />
+					</a>
+					<a href="https://www.mcgill.ca/neuro/" target="_blank" class="friend-card">
+						<img src="images/Neuro.png" alt="The Neuro" />
+					</a>
+					<a href="https://bridge.incf.org/" target="_blank" class="friend-card">
+						<img src="images/bridge_logo_280.jpg" alt="BRIDGE / INCF" />
 					</a>
 				</div>
 			</div>
-			<div class="row" align = "center">
-				<div class="3u">
-					<a href="https://www.repronim.org/" target="_blank" class="image fit">
-						<img src="images/ReproNim_Logo.png" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://enigma.ini.usc.edu/" target="_blank" class="image fit">
-						<img src="images/enigma_300DPI_small.png" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://braincanada.ca/" target="_blank" class="image fit">
-							<img src="images/BrainCan.png" alt="" />
-					</a>
-				</div>
-			</div>	<!-- End row -->
-			<div class="row" align = "center">
-				<div class="3u">
-					<a href="http://braininstitute.ca/" target="_blank" class="image fit">
-						<img src="images/OBI_logp.png" alt="" />
-					</a>
-				</div>
-				<div class="4u">
-					<a href="http://www.camh.ca/en/research/research_areas/krembil-centre-for-neuroinformatics"
-						target="_blank" class="image fit">
-						<img src="images/KCNI_with_brain.jpeg" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://www.sickkids.ca/en/research/research-programs/neurosciences-mental-health/" target="_blank" class="image fit">
-						<img src="images/SickKids_research.png" alt="" />
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="5u">
-					<a href="https://compose.neurosynth.org/" target="_blank" class="image fit">
-						<img src="images/NSC.png" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://www.nitrc.org/" target="_blank" class="image fit">
-						<img src="images/NITRCTriangle1.jpg" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://www.mcgill.ca/hbhl/" target="_blank" class="image fit">
-						<img src="images/hbhl.png" alt="" />
-					</a>
-				</div>
-			</div>	<!-- End row -->
-			<div class="row">
-				<div class="5u">
-					<a href="https://brainlife.io/about/" target="_blank" class="image fit">
-						<img src="images/thumbnail_brainlifelogo.png" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://conp.ca/" target="_blank" class="image fit">
-						<img src="images/conp_logo.png" alt="" />
-					</a>
-				</div>
-				<div class="3u">
-					<a href="https://www.mcgill.ca/neuro/" target="_blank" class="image fit">
-						<img src="images/Neuro.png" alt="" />
-					</a>
-				</div>
-			</div> <!-- End row -->
-			<div class="row">
-				<div class="3u">
-					<a href="https://bridge.incf.org/" target="_blank" class="image fit">
-						<img src="images/bridge_logo_280.jpg" alt="" />
-					</a>
-				</div>
-			</div> <!-- End row -->
-            <p>
-			</p>
-			<h3>And Many More!</h3>
 		</header>
-		</div> 
-
-
 	</section>
+
 	<!-- <section id="sponsors" class="main">
 		<header>
 			<div class="container">
@@ -678,7 +721,7 @@
 			<li>
 				<a href="mailto:SOBPHackInfo@repronim.org" target="_blank" class="icon fa-envelope">
 					<span class="label">Email</span>
-				</a> Email
+				</a> <a href="mailto:SOBPHackInfo@repronim.org">SOBPHackInfo@repronim.org</a>
 			</li>
 			<!-- <li>
 				<a href="https://discord.gg/HC7fumm79B" target="_blank" class="icon fa-comment">
@@ -691,7 +734,7 @@
 				</a> Twitter
 			</li> -->
 			<li>
-				<a href="https://sobpbrainhack.github.io/SOBPHack-2026/" target="_blank" class="icon fa-github">
+				<a href="https://github.com/SOBPBrainHack/SOBPHack-2026" target="_blank" class="icon fa-github">
 					<span class="label">GitHub</span>
 				</a> GitHub
 			</li>
@@ -856,6 +899,33 @@
 				obj.addEventListener("mouseover", displayMri)
 			});
 		});
+	</script>
+
+	<!-- Script for active nav highlighting on scroll -->
+	<script>
+		(function () {
+			var navLinks = document.querySelectorAll('.topnav a[href^="#"]');
+			var sections = [];
+			navLinks.forEach(function (link) {
+				var id = link.getAttribute('href').substring(1);
+				var section = document.getElementById(id);
+				if (section) sections.push({ el: section, link: link });
+			});
+
+			var observer = new IntersectionObserver(function (entries) {
+				entries.forEach(function (entry) {
+					var match = sections.find(function (s) { return s.el === entry.target; });
+					if (match) {
+						if (entry.isIntersecting) {
+							navLinks.forEach(function (l) { l.classList.remove('active'); });
+							match.link.classList.add('active');
+						}
+					}
+				});
+			}, { rootMargin: '-40% 0px -55% 0px' });
+
+			sections.forEach(function (s) { observer.observe(s.el); });
+		})();
 	</script>
 </body>
 
