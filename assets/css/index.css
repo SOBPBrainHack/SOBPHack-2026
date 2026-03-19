@@ -1,3 +1,13 @@
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	padding-top: 35px;
+}
+
 .header-logo {
 	background: rgb(236,236,236);
 	/* background: linear-gradient(rgba(255,255,255,1) 25%, rgba(90,220,250,1) 100%); */
@@ -60,6 +70,17 @@
 .topnav {
 	overflow: hidden;
 	background-color: rgb(250, 250, 250);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .topnav a.active {
+	background-color: rgb(16, 86, 151);
+	color: rgb(173, 228, 241);
   }
   
   .topnav a {
@@ -142,7 +163,7 @@
   
    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 800px) {
-	.topnav.responsive {position: relative;}
+	.topnav.responsive {position: fixed;}
 	.topnav.responsive a.visible-phone {
 	  position: absolute;
 	  right: 0;
@@ -521,4 +542,107 @@
 	transition: 1s color;
 	color: #000000;
 	font-size: large;
+}
+
+/* Sponsors & Friends section */
+.sponsors-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 2em;
+	max-width: 900px;
+	margin: 1.5em auto;
+}
+
+.sponsor-card {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+	padding: 1.5em 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sponsor-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.sponsor-card img {
+	max-height: 80px;
+	width: auto;
+	max-width: 260px;
+	object-fit: contain;
+}
+
+.sponsor-card.primary {
+	padding: 2em 3em;
+}
+
+.sponsor-card.primary img {
+	max-height: 110px;
+	max-width: 340px;
+}
+
+.friends-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1.2em;
+	max-width: 1000px;
+	margin: 1.5em auto;
+}
+
+.friend-card {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+	padding: 1em 1.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friend-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.friend-card img {
+	max-height: 55px;
+	width: auto;
+	max-width: 180px;
+	object-fit: contain;
+}
+
+.section-divider {
+	width: 80px;
+	height: 3px;
+	background: linear-gradient(90deg, #113c75, #5adcfa);
+	border: none;
+	border-radius: 2px;
+	margin: 2em auto;
+}
+
+@media (max-width: 800px) {
+	.sponsor-card.primary img {
+		max-height: 70px;
+		max-width: 220px;
+	}
+	.sponsor-card img {
+		max-height: 55px;
+		max-width: 180px;
+	}
+	.friend-card img {
+		max-height: 40px;
+		max-width: 140px;
+	}
+	.sponsors-grid, .friends-grid {
+		gap: 1em;
+	}
 }
