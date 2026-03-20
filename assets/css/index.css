@@ -79,17 +79,21 @@ body {
   }
 
   .topnav a.active {
-	background-color: rgb(16, 86, 151);
-	color: rgb(173, 228, 241);
+	background-color: transparent;
+	color: #113c75;
+	border-bottom: 3px solid #5adcfa;
+	font-weight: 600;
   }
   
   .topnav a {
 	float: left;
 	color: #113c75;
 	text-align: center;
-	padding: 5px 16px;
+	padding: 10px 14px;
 	text-decoration: none;
-	font-size: 17px;
+	font-size: 15px;
+	border-bottom: 3px solid transparent;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
   }
 
   /* Hide the link that should open and close the topnav on small screens */
@@ -98,8 +102,9 @@ body {
 }
   
   .topnav a:hover, .dropdown:hover .dropbtn {
-	background-color: rgb(16, 86, 151);
-	color: rgb(173, 228, 241);
+	background-color: rgba(17, 60, 117, 0.06);
+	color: #113c75;
+	border-bottom: 3px solid #113c75;
   }
    /* Dropdown container - needed to position the dropdown content */
 .dropdown {
@@ -210,25 +215,22 @@ body {
   }
 
 .subcomittee-container {
-	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-direction: row;
 	flex-direction: row;
-	-webkit-align-items: center;
-	align-items: center;
+	align-items: stretch;
 	flex-wrap: wrap;
-	min-width: 900px;
 	max-width: 1200px;
-	justify-content: space-even;
+	justify-content: center;
 	background: rgb(255,255,255);
+	gap: 4px;
 }
 
 .flex-item {
 	display:flex;
-	align-items: center;		
-	flex-basis: 30%;
+	align-items: center;
+	flex-basis: 22%;
 	line-height: 25px;
-	margin: 14px;
+	margin: 10px;
 	padding: 5px;
 	overflow: hidden;
 }
@@ -645,4 +647,295 @@ body {
 	.sponsors-grid, .friends-grid {
 		gap: 1em;
 	}
+}
+
+/* ── Register buttons ── */
+.register-btn {
+	display: inline-block;
+	padding: 14px 40px;
+	background: linear-gradient(135deg, #113c75, #1a6fb5, #5adcfa);
+	color: #fff !important;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 1.4em;
+	text-decoration: none !important;
+	border-radius: 50px;
+	box-shadow: 0 4px 16px rgba(17, 60, 117, 0.3);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	letter-spacing: 0.03em;
+}
+
+.register-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 24px rgba(17, 60, 117, 0.4);
+	color: #fff !important;
+}
+
+.register-btn-secondary {
+	display: inline-block;
+	padding: 10px 28px;
+	background: linear-gradient(135deg, #113c75, #1a6fb5);
+	color: #fff !important;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 1.1em;
+	text-decoration: none !important;
+	border-radius: 50px;
+	box-shadow: 0 3px 12px rgba(17, 60, 117, 0.25);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-btn-secondary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 18px rgba(17, 60, 117, 0.35);
+	color: #fff !important;
+}
+
+/* ── Event details list ── */
+.event-details-list {
+	list-style: none;
+	padding: 0;
+	margin: 1.5em auto;
+	max-width: 700px;
+	text-align: left;
+}
+
+.event-details-list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.8em;
+	padding: 0.8em 0;
+	border-bottom: 1px solid rgba(0,0,0,0.06);
+	line-height: 1.6;
+}
+
+.event-details-list li:last-child {
+	border-bottom: none;
+}
+
+.event-details-list .detail-icon {
+	color: #113c75;
+	font-size: 1.1em;
+	min-width: 1.4em;
+	text-align: center;
+	margin-top: 3px;
+}
+
+.event-details-list .detail-label {
+	font-weight: 700;
+	color: #113c75;
+}
+
+/* ── Suggest a Project button ── */
+.suggest-project-btn {
+	display: inline-block;
+	padding: 14px 32px;
+	background: linear-gradient(135deg, #5adcfa, #113c75);
+	color: #fff !important;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 0.95em;
+	text-decoration: none !important;
+	border-radius: 50px;
+	box-shadow: 0 4px 16px rgba(90, 220, 250, 0.35);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	letter-spacing: 0.02em;
+}
+
+.suggest-project-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 24px rgba(90, 220, 250, 0.45);
+	color: #fff !important;
+}
+
+.suggest-project-btn i {
+	margin-right: 0.3em;
+}
+
+/* ── Hotel cards ── */
+.hotel-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1em;
+	max-width: 900px;
+	margin: 1.5em auto;
+}
+
+.hotel-card {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+	padding: 0.7em 1.2em;
+	display: flex;
+	align-items: center;
+	gap: 0.7em;
+	color: #333;
+	font-weight: 500;
+	flex: 0 1 auto;
+}
+
+.hotel-number {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: #113c75;
+	color: #fff;
+	font-weight: 700;
+	font-size: 0.85em;
+	flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+	.hotel-grid {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.hotel-card {
+		width: 100%;
+	}
+}
+
+/* ── Section spacing & transitions ── */
+section.main {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+h2 {
+	font-weight: 700 !important;
+}
+
+section.main + section.main {
+	border-top: 3px solid transparent;
+	border-image: linear-gradient(90deg, transparent, #5adcfa, transparent) 1;
+}
+
+/* ── Footer upgrade ── */
+#footer {
+	background: #0d2d5a;
+	color: #c8dff5;
+	padding: 3em 0 2em;
+}
+
+#footer h2 {
+	color: #fff;
+	margin-bottom: 1.2em;
+}
+
+.footer-contact-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto 2em;
+	max-width: 480px;
+	text-align: left;
+}
+
+.footer-contact-list li {
+	display: flex;
+	align-items: center;
+	gap: 0.8em;
+	padding: 0.7em 0;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	font-size: 1em;
+}
+
+.footer-contact-list li:last-child {
+	border-bottom: none;
+}
+
+.footer-contact-list .contact-icon {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: rgba(90, 220, 250, 0.15);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	font-size: 1em;
+	color: #5adcfa;
+}
+
+.footer-contact-list .contact-label {
+	font-weight: 600;
+	color: #fff;
+	margin-right: 0.4em;
+}
+
+.footer-contact-list a {
+	color: #5adcfa;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.footer-contact-list a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#footer .copyright {
+	border-top: 1px solid rgba(255,255,255,0.1);
+	padding-top: 1.5em;
+	margin-top: 1em;
+	color: rgba(255,255,255,0.5);
+}
+
+#footer .copyright a {
+	color: rgba(255,255,255,0.6);
+}
+
+/* ── Mobile nav overlay ── */
+.nav-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 9998;
+}
+
+.nav-overlay.active {
+	display: block;
+}
+
+@media screen and (max-width: 800px) {
+	.topnav.responsive {
+		background: rgba(250, 250, 250, 0.98);
+		box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+	}
+}
+
+/* ── Leads wider cards ── */
+.leads-container .flex-item {
+	flex-basis: 42%;
+}
+
+/* ── Placeholder images subtle treatment ── */
+.flex-item img[src*="person101"] {
+	opacity: 0.55;
+	border: 2px dashed #c0c0c0;
+}
+
+/* ── Map responsive container ── */
+.map-responsive {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	height: 0;
+	max-width: 600px;
+	margin: 1em auto;
+}
+
+.map-responsive iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
