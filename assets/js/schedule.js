@@ -110,7 +110,7 @@ $(function(){
     }, {
         id: "social",
         event: "Socializing and Dinner",
-        time: "18:00 - 21:00",
+        time: "18:00 - 20:00",
         details: "Evening social event to foster community building. Location: TBD."
     }, {
         id: "room-opens",
