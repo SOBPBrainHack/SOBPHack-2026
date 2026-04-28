@@ -109,9 +109,9 @@ $(function(){
         details: "Quick updates from teams on Day 1 progress."
     }, {
         id: "social",
-        event: "Socializing and Dinner",
+        event: "Socializing and Snacks at Beer Authority",
         time: "18:00 - 20:00",
-        details: "Evening social event to foster community building. Location: TBD."
+        details: "Evening social event at Beer Authority (300 W 40th St, New York). <a href=\"https://www.beerauthoritynyc.com/\" target=\"_blank\">beerauthoritynyc.com</a>"
     }, {
         id: "room-opens",
         event: "Room Opens",
